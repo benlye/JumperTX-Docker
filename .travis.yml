@@ -18,7 +18,29 @@ install:
   - docker build -t benlye/jumpertx-build .
 
 script:
+  # Build with no extra flags
   - docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build
+  - ls -al /tmp/JumperTX/jumpertx-t16.bin
+  - if [ ! -f /tmp/JumperTX/jumpertx-t16.bin ]; then
+      exit 1;
+    fi
+
+    # Build with changed default flag
+  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "FLAGS=HELI=NO" benlye/jumpertx-build
+  - ls -al /tmp/JumperTX/jumpertx-t16.bin
+  - if [ ! -f /tmp/JumperTX/jumpertx-t16.bin ]; then
+      exit 1;
+    fi
+
+    # Build with additional flag
+  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "FLAGS=FOO=BAR" benlye/jumpertx-build
+  - ls -al /tmp/JumperTX/jumpertx-t16.bin
+  - if [ ! -f /tmp/JumperTX/jumpertx-t16.bin ]; then
+      exit 1;
+    fi
+
+    # Build with additional flag and a default changed
+  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "FLAGS=FOO=BAR HELI=NO" benlye/jumpertx-build
   - ls -al /tmp/JumperTX/jumpertx-t16.bin
   - if [ ! -f /tmp/JumperTX/jumpertx-t16.bin ]; then
       exit 1;
