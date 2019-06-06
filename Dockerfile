@@ -25,4 +25,4 @@ COPY build_firmware.py /build
 ENV PATH $PATH:/opt/gcc-arm-none-eabi/bin:/jumpertx/radio/util
 
 # Run the shell script to build the firmware
-ENTRYPOINT ["bash", "-c", "/build/build_jumpertx.sh $FLAGS"]
+ENTRYPOINT ["bash", "-c", "/build/build_jumpertx.sh $CMAKE_FLAGS"]
