@@ -62,6 +62,7 @@ for ext_opt, ext_value in extra_options.items():
 
 # Remove any existing output file
 if os.path.isfile(output_path):
+    print("")
     print("Removing existing firmware file '%s'" % (output_path))
     os.remove(output_path)
 
@@ -83,7 +84,9 @@ for opt, value in extra_command_options.items():
 cmd.append(source_dir)
 
 # Output the cmake command line
+print("")
 print(" ".join(cmd))
+print("")
 
 # Launch cmake
 proc = subprocess.Popen(cmd)
@@ -92,6 +95,7 @@ proc.wait()
 # Exit if cmake errored
 if proc.returncode != 0:
     print("cmake compilation error!")
+    print("")
     exit(2)
     
 # Launch make with two threads
@@ -101,6 +105,7 @@ proc.wait()
 # Exit if make errored
 if proc.returncode != 0:
     print("make compilation error!")
+    print("")
     exit(2)
 
 # Copy binary to the output path

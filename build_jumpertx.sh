@@ -8,13 +8,16 @@ if [ ! -f '/jumpertx/CMakeLists.txt' ]; then
 fi
 
 # Copy the mounted source to /tmp (3x faster than compiling against the mount)
+echo
 echo "Copying source to temporary build directory..."
+echo
 cp -r /jumpertx /tmp/jumpertx
 
 # Move to the build directory
 cd /build
 
-echo "Flags: $*"
+echo "Extra CMAKE Flags: $*"
+echo
 
 python /build/build_firmware.py $*
 
