@@ -113,12 +113,11 @@ binsize = os.stat(output_path).st_size
 print("")
 print("Firmware file: %s" % (output_path))
 print("Firmware size: {0}KB ({1:.0%})".format(binsize/1024, float(binsize)/float(max_size)))
+print("")
 
-# Exit if the firmware is too big
+# Exit with an error if the firmware is too big
 if binsize > max_size:
     exit(1)
-
-print("")
 
 # Exit with success result code
 exit(0)
