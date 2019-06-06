@@ -45,3 +45,10 @@ script:
   - if [ ! -f /tmp/JumperTX/jumpertx-t16.bin ]; then
       exit 1;
     fi
+
+  # Build with an additional cmake flag, a default changed, and a default the same
+  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=FOO=BAR HELI=NO MULTIMODULE=YES" benlye/jumpertx-build
+  - ls -al /tmp/JumperTX/jumpertx-t16.bin
+  - if [ ! -f /tmp/JumperTX/jumpertx-t16.bin ]; then
+      exit 1;
+    fi

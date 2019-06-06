@@ -53,9 +53,9 @@ for ext_opt, ext_value in extra_options.items():
     if found:
         if ext_value != def_value:
             default_options[def_opt] = ext_value;
-            print ("Overriding default value for %s: %s => %s" % (def_opt, def_value, ext_value))
+            print ("Overriding default flag: %s=%s => %s=%s" % (def_opt, def_value, def_opt, ext_value))
         else:
-            print ("Override value for %s matches default: %s" % (def_opt, def_value))
+            print ("Override for default flag matches default value: %s=%s" % (def_opt, def_value))
     else:
         print ("Adding additional flag: %s=%s" % (ext_opt, ext_value))
         extra_command_options[ext_opt] = ext_value
