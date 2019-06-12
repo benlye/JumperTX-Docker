@@ -19,33 +19,6 @@ install:
 
 script:
   # Build for T16 with no extra cmake flags
-  - echo "travis_fold:start:test1"
+  - echo "travis_fold:start:Param1\033[33;1mParam2\033[0m"
   - docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build
-  - echo "travis_fold:end:test1"
-
-  # Build for T16 with a changed default cmake flag
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=HELI=NO" benlye/jumpertx-build
-
-  # Build for T16 with an additional cmake flag
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=FOO=BAR" benlye/jumpertx-build
-
-  # Build for T16 with an additional cmake flag and a default changed
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=FOO=BAR HELI=NO" benlye/jumpertx-build
-
-  # Build for T16 with an additional cmake flag, a default changed, and a default the same
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=FOO=BAR HELI=NO MULTIMODULE=YES" benlye/jumpertx-build
-
-  # Build for T16HD
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=PCB=T16HD" benlye/jumpertx-build
-
-  # Build for T12
-  #- docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=PCB=T12" benlye/jumpertx-build
-  
-  # Build for German
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=TRANSLATIONS=DE" benlye/jumpertx-build
-
-  # Build for French
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=TRANSLATIONS=FR" benlye/jumpertx-build
-
-  # Build for Czech
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=TRANSLATIONS=CZ" benlye/jumpertx-build
+  - echo "travis_fold:end:Param1"
