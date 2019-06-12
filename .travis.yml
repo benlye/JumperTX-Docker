@@ -19,7 +19,9 @@ install:
 
 script:
   # Build for T16 with no extra cmake flags
+  - echo "travis_fold:start:test1"
   - docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build
+  - echo "travis_fold:end:test1"
 
   # Build for T16 with a changed default cmake flag
   - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=HELI=NO" benlye/jumpertx-build
