@@ -24,16 +24,17 @@ before_script:
   - export -f travis_time_finish
   - start_fold() { echo -e "travis_fold:start:$1"; }
   - end_fold() { echo -e "\ntravis_fold:end:$1\r"; }
-  - runBuild() { start_fold $1; travis_time_start; echo "docker run --rm -it -v /tmp/JumperTX:/jumpertx -e \"CMAKE_FLAGS=$2\" benlye/jumpertx-build"; docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=$2" benlye/jumpertx-build; end_fold $1; echo; }
+  - runBuild() { start_fold $1; travis_time_start; echo "docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build"; docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build; end_fold $1; echo; }
+  - runBuildWithFlags() { start_fold $1; travis_time_start; echo "docker run --rm -it -v /tmp/JumperTX:/jumpertx -e \"CMAKE_FLAGS=$2\" benlye/jumpertx-build"; docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=$2" benlye/jumpertx-build; end_fold $1; echo; }
 
 script:
   - runBuild "T16.Default"
-  - runBuild "T16HD.Default" "PCB=T16HD"
-  - runBuild "T12.Default" "PCB=T12"
-  - runBuild "T16.Changed.Default" "HELI=NO"
-  - runBuild "T16.Changed.Default.Added.New" "HELI=NO FOO=BAR"
-  - runBuild "T16.Changed.Default.Unchanged.Default.Added.New" "HELI=NO MULTIMODULE=YES FOO=BAR
-  - runBuild "T16.Lang.German" "TRANSLATIONS=DE"
-  - runBuild "T16.Lang.French" "TRANSLATIONS=FR"
-  - runBuild "T16.Lang.Italian" "TRANSLATIONS=IT"
-  - runBuild "T16.Lang.Czech" "TRANSLATIONS=CZ"
+  - runBuildWithFlags "T16HD.Default" "PCB=T16HD"
+  - runBuildWithFlags "T12.Default" "PCB=T12"
+  - runBuildWithFlags "T16.Changed.Default" "HELI=NO"
+  - runBuildWithFlags "T16.Changed.Default.Added.New" "HELI=NO FOO=BAR"
+  - runBuildWithFlags "T16.Changed.Default.Unchanged.Default.Added.New" "HELI=NO MULTIMODULE=YES FOO=BAR
+  - runBuildWithFlags "T16.Lang.German" "TRANSLATIONS=DE"
+  - runBuildWithFlags "T16.Lang.French" "TRANSLATIONS=FR"
+  - runBuildWithFlags "T16.Lang.Italian" "TRANSLATIONS=IT"
+  - runBuildWithFlags "T16.Lang.Czech" "TRANSLATIONS=CZ"
