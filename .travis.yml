@@ -24,6 +24,8 @@ before_script:
 
 script:
   # Build for T16 with no extra cmake flags
-  - travis_fold start "T16.default.flags" "blah blah blah"
+  - echo "Echo outside the fold
+  - travis_fold start "T16.default.flags"
+  - echo "Echo inside the fold"
   - docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build
   - travis_fold end "T16.default.flags"
