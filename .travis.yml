@@ -18,9 +18,9 @@ install:
   - cd ${TRAVIS_BUILD_DIR}
   - ls -al
   - docker build -t benlye/jumpertx-build .
-  - start_fold() { echo -e "travis_fold:start:$1\r"; }
+  - start_fold() { echo -e "travis_fold:start:$1"; }
   - end_fold() { echo -e "\ntravis_fold:end:$1\r"; }
-  - runTest() { travis_time_start; start_fold $1; echo $2; $2;  end_fold $1; }
+  - runTest() { start_fold $1; travis_time_start; echo $2; $2; end_fold $1; }
 
 
 before_script:
@@ -32,7 +32,7 @@ before_script:
 
 script:
   - ./travis_tests.sh
-  - runTest "T16.lang.German" "docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "\""CMAKE_FLAGS=TRANSLATIONS=DE"\"" benlye/jumpertx-build"
+  - runTest "T16.lang.German" 'docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=TRANSLATIONS=DE" benlye/jumpertx-build'
   - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=TRANSLATIONS=DE" benlye/jumpertx-build
   # Build for T16 with no extra cmake flags
   #- start_fold "T16.default.flags" "T16 Build with Default Options"
