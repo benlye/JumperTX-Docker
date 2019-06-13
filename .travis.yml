@@ -11,8 +11,8 @@ notifications:
 
 before_install:
   - git clone --recursive https://github.com/JumperXYZ/JumperTX.git /tmp/JumperTX
-  - start_fold() { echo -e "travis_fold:start:$1\033[33;1m$2\033[0m"; }
-  - end_fold() { echo -e "\ntravis_fold:end:$1\r"; }
+  #- start_fold() { echo -e "travis_fold:start:$1\033[33;1m$2\033[0m"; }
+  #- end_fold() { echo -e "\ntravis_fold:end:$1\r"; }
   
 install:
   - cd ${TRAVIS_BUILD_DIR}
@@ -21,19 +21,21 @@ install:
 
 before_script:
   - export -f travis_fold
+  - chmod +x travis_tests.sh
 
 script:
+  - ./travis_tests.sh
   # Build for T16 with no extra cmake flags
-  - start_fold "T16.default.flags" "T16 Build with Default Options"
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build
-  - end_fold "T16.default.flags"
+  #- start_fold "T16.default.flags" "T16 Build with Default Options"
+  #- docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build
+  #- end_fold "T16.default.flags"
 
   # Build for T16 with in German
-  - start_fold "T16.german" "T16 Build with German Language"
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=TRANSLATIONS=DE" benlye/jumpertx-build
-  - end_fold "T16.german"
+  #- start_fold "T16.german" "T16 Build with German Language"
+  #- docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=TRANSLATIONS=DE" benlye/jumpertx-build
+  #- end_fold "T16.german"
 
   # Build for T12 with no extra cmake flags
-  - start_fold "T12.default.flags" "T12 Build with Default Options"
-  - docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=PCB=T12" benlye/jumpertx-build
-  - end_fold "T12.default.flags"
+  #- start_fold "T12.default.flags" "T12 Build with Default Options"
+  #- docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=PCB=T12" benlye/jumpertx-build
+  #- end_fold "T12.default.flags"
