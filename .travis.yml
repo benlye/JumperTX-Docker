@@ -11,8 +11,8 @@ notifications:
 
 before_install:
   - git clone --recursive https://github.com/JumperXYZ/JumperTX.git /tmp/JumperTX
-  #- start_fold() { echo -e "travis_fold:start:$1\033[33;1m$2\033[0m" }
-  #- end_fold() { echo -e "\ntravis_fold:end:$1\r" }
+  - start_fold() { echo -e "travis_fold:start:$1\033[33;1m$2\033[0m"; }
+  - end_fold() { echo -e "\ntravis_fold:end:$1\r"; }
   
 install:
   - cd ${TRAVIS_BUILD_DIR}
@@ -24,8 +24,6 @@ before_script:
 
 script:
   # Build for T16 with no extra cmake flags
-  - echo "Echo outside the fold"
-  - travis_fold start "T16.default.flags"
-  - echo "Echo inside the fold"
+  - start_fold "T16.default.flags" "Blah Blah Blah"
   - docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build
-  - travis_fold end "T16.default.flags"
+  - end_fold "T16.default.flags"
