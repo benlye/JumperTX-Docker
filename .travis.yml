@@ -19,6 +19,6 @@ install:
 
 script:
   # Build for T16 with no extra cmake flags
-  - echo "travis_fold:start:Param1\033[33;1mParam2\033[0m"
+  - echo -e "travis_fold:start:Param1\033[33;1mParam2\033[0m"
   - docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build
-  - echo "travis_fold:end:Param1"
+  - echo -e "travis_fold:end:Param1"
