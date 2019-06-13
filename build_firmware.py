@@ -47,7 +47,8 @@ if not os.path.exists("/jumpertx/CMakeLists.txt"):
     print("")
     exit(5)
 
-print("CMAKE_FLAGS Environment Variable: %s" % os.environ['CMAKE_FLAGS'])
+if "CMAKE_FLAGS" in os.environ:
+    print("CMAKE_FLAGS Environment Variable: %s" % os.environ["CMAKE_FLAGS"])
 
 # Parse the extra options from the command line
 extra_options = OrderedDict()
