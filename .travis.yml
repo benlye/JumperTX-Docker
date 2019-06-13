@@ -20,7 +20,7 @@ install:
   - docker build -t benlye/jumpertx-build .
   - start_fold() { echo -e "travis_fold:start:$1\r"; }
   - end_fold() { echo -e "\ntravis_fold:end:$1\r"; }
-  - runTest() { start_fold $1; travis_time_start; echo $2; `$2`; travis_time_finish; end_fold $1; }
+  - runTest() { start_fold $1; echo $2; travis_time_start; $2; travis_time_finish; end_fold $1; }
 
 
 before_script:
