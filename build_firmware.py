@@ -47,6 +47,8 @@ if not os.path.exists("/jumpertx/CMakeLists.txt"):
     print("")
     exit(5)
 
+print("CMAKE_FLAGS Environment Variable: %s" % os.environ['CMAKE_FLAGS'])
+
 # Parse the extra options from the command line
 extra_options = OrderedDict()
 if len(sys.argv) > 1:
@@ -58,6 +60,8 @@ if len(sys.argv) > 1:
     print ("Container CMAKE flags: %s" % " ".join(sys.argv[1:]))
 else:
     print ("No additional CMAKE flags specified.")
+
+exit(0)
 
 # If specified, get the PCB from the flags; default to the T16
 board = "T16"
