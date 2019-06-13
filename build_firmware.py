@@ -59,8 +59,6 @@ if "CMAKE_FLAGS" in os.environ:
 else:
     print ("No additional CMAKE flags specified.")
 
-exit(0)
-
 # If specified, get the PCB from the flags; default to the T16
 board = "T16"
 if "PCB" in extra_options:
@@ -94,6 +92,8 @@ for ext_opt, ext_value in extra_options.items():
     else:
         print ("Adding additional flag: %s=%s" % (ext_opt, ext_value))
         extra_command_options[ext_opt] = ext_value
+
+exit(0)
 
 # Start the timer
 start = time.time()
