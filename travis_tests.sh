@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ev
 
 # Some helpers which will 'fold' the output to make the Travis logs easier to grok
 start_fold() { echo -e "travis_fold:start:$1\r"; }
