@@ -19,8 +19,11 @@ install:
   - ls -al
   - docker build -t benlye/jumpertx-build .
 
+before_script:
+  - export -f travis_fold
+
 script:
   # Build for T16 with no extra cmake flags
-  - fold_start T16.defaults "Build for T16 with defaults"
+  - travis_fold start "T16.default.flags"
   - docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build
-  - fold_end T16.defaults
+  - travis_fold end "T16.default.flags"
