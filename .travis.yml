@@ -26,13 +26,12 @@ before_script:
   - end_fold() { echo -e "\ntravis_fold:end:$1\r"; }
   - runBuildWithoutFlag() { exitcode=0; start_fold $1; travis_time_start; echo "docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build"; docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build; exitcode=$?; end_fold $1; echo; return $exitcode; }
   - runBuildWithFlag() { exitcode=0; start_fold $1; travis_time_start; echo "docker run --rm -it -v /tmp/JumperTX:/jumpertx -e \"CMAKE_FLAGS=$2\"  benlye/jumpertx-build"; docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=$2" benlye/jumpertx-build; exitcode=$?; end_fold $1; echo; return $exitcode; }
-  - runBuild() { if [ $2 ];  then runBuildWithFlag $1 $2; else runBuildWithoutFlag $1; fi; }
-  - echo
+  - runBuild() { if [ $2 ]; then runBuildWithFlag $1 $2; else runBuildWithoutFlag $1; fi; }
 
 script:
   - runBuild "T16.Default"
   - runBuild "T16HD.Default" "PCB=T16HD"
-  - runBuild "T12.Default" "PCB=T12"
+  #- runBuild "T12.Default" "PCB=T12"
   - runBuild "T16.Changed.Default" "HELI=NO"
   - runBuild "T16.Changed.Default.Added.New" "HELI=NO FOO=BAR"
   - runBuild "T16.Changed.Default.Unchanged.Default.Added.New" "HELI=NO MULTIMODULE=YES FOO=BAR"
