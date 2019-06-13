@@ -21,6 +21,6 @@ install:
 
 script:
   # Build for T16 with no extra cmake flags
-  - start_fold T16.defaults "Build for T16 with defaults"
+  - fold_start T16.defaults "Build for T16 with defaults"
   - docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build
-  - end_fold T16.defaults
+  - fold_end T16.defaults
