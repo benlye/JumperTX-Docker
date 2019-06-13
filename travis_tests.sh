@@ -4,7 +4,7 @@ set -ev
 # Some helpers which will 'fold' the output to make the Travis logs easier to grok
 start_fold() { echo -e "travis_fold:start:$1\r"; }
 end_fold() { echo -e "\ntravis_fold:end:$1\r"; }
-run_folded_command() { start_fold $1; travis_time_start; echo $2; `$2`; travis_time_finish; end_fold $1; }
+run_folded_command() { start_fold $1; travis_time_start; echo $2; $2; travis_time_finish; end_fold $1; }
 
 echo
 # Build for T16 with no extra cmake flags
