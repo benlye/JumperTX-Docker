@@ -10,9 +10,9 @@ echo
 # Build for T16 with no extra cmake flags
 run_folded_command "T16.default" "docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build"
 
-run_folded_command "T16.lang.German" 'docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=TRANSLATIONS=DE" benlye/jumpertx-build'
+run_folded_command "T16.lang.German" "docker run --rm -it -v /tmp/JumperTX:/jumpertx -e \"CMAKE_FLAGS=TRANSLATIONS=DE\" benlye/jumpertx-build"
 
-run_folded_command "T12.default" 'docker run --rm -it -v /tmp/JumperTX:/jumpertx -e "CMAKE_FLAGS=PCB=T12" benlye/jumpertx-build'
+run_folded_command "T12.default" "docker run --rm -it -v /tmp/JumperTX:/jumpertx -e \"CMAKE_FLAGS=PCB=T12\" benlye/jumpertx-build"
 
 #start_fold "T16.default" "docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build"
 #echo "docker run --rm -it -v /tmp/JumperTX:/jumpertx benlye/jumpertx-build"
