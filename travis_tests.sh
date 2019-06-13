@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-start_fold() { echo -e "travis_fold:start:$1\033[33;1m$2\033[0m"; }
+#start_fold() { echo -e "travis_fold:start:$1\033[33;1m$2\033[0m"; }
+start_fold() { echo -e "travis_fold:start:$1\r"; }
 end_fold() { echo -e "\ntravis_fold:end:$1\r"; }
 
 #run_folded_command() { start_fold $1; $2; end_fold $1; }
